@@ -1,61 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Laboratorio #2 – Implementación del Login en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Universidad Tecnológica de Panamá 
+Facultad de Ingeniería de Sistemas Computacionales Licenciatura en Ingeniería de Software 
+Curso: Ingeniería Web  
+Instructora: Ing. Irina Fong  
+Estudiante: Juan Carrion  
+Fecha de ejecución:07/10/2025
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Introducción
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El presente laboratorio tiene como objetivo implementar y documentar el Login utilizando el framework Laravel, aplicando los principios del patrón Modelo-Vista-Controlador.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+En Laravel, la arquitectura MVC se distribuyo de esta manera:
 
-## Learning Laravel
+Modelos (app/Models): Se encargan de manejar la lógica de negocio y la comunicación con la base de datos.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Vistas (resources/views): Contienen la interfaz gráfica que ve el usuario (HTML, Blade).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Controladores (app/Http/Controllers) → Procesan las solicitudes HTTP, coordinan los modelos y retornan vistas o respuestas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Rutas (routes/web.php): Definen las URL que responden a las acciones del usuario.
 
-## Laravel Sponsors
+Durante este laboratorio realize migraciones, configuraciones en el archivo .env, al igual que la instalación de dependencias y personalización del módulo de autenticación de Laravel.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+Requisitos Previos
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+PHP	8.2.26
+Composer	2.8.12
+Laravel 5.18.0
+Entorno de Desarrollo	WampServer 
+Servidor Web	Apache o Nginx
+Base de Datos	MySQL
+Editor de Código	Visual Studio Code
+NPM	Para compilar los assets (Laravel Mix / Vite)
+Sistema Operativo	Windows
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Instalación y Configuración
 
-## Code of Conduct
+a) Clonar el repositorio:
+git clone https://github.com/usuario/Login_Lab.git
+cd Login_Lab
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+b) Instalar las dependencias:
+composer install
+npm install && npm run dev
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+c) Crear el archivo de entorno:
+cp .env.example .env
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+d) Configurar las credenciales de la base de datos en .env:
+DB_DATABASE=login_lab
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+e) Generar la clave de la aplicación:
+php artisan key:generate
+
+
+f) Ejecutar las migraciones:
+php artisan migrate
+
+Implementación del Login (Laravel UI)
+
+Para el login se empleó el paquete Laravel UI, que proporciona el scaffolding clásico de login, registro y recuperación de contraseña.
+
+Comandos utilizados:
+
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install && npm run dev
+
+
+Este flujo genera automáticamente:
+
+Controladores de autenticación (Auth).
+
+Vistas de login y registro (resources/views/auth).
+
+Rutas configuradas en routes/web.php.
+
+Migraciones para la tabla users.
+
+
+Base de Datos
+
+El sistema se conecta a una base de datos MySQL configurada en el archivo .env.
+
+Tablas principales generadas mediante migraciones:
+
+users
+
+password_resets
+
+failed_jobs
+
+personal_access_tokens
+
+migrations
+
+Comandos ejecutados:
+
+php artisan migrate
+
+
+Dificultades y Soluciones
+Error al ejecutar migraciones: Para solucionarlo verifique la conexión en .env y se ejecutó php artisan migrate:fresh.
+Error en npm run dev	Se reinstalaron dependencias con npm install.
+Problemas con vistas de autenticación	Se reinstaló Laravel UI y se regeneraron vistas con php artisan ui bootstrap --auth.
+Clave de aplicación faltante	Se generó nuevamente con php artisan key:generate.
+
+
+Comandos Clave Utilizados
+composer install
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install && npm run dev
+php artisan migrate
+php artisan serve
