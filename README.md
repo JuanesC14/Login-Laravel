@@ -1,99 +1,98 @@
 Laboratorio #2 – Implementación del Login en Laravel
 
-Universidad Tecnológica de Panamá 
-Facultad de Ingeniería de Sistemas Computacionales Licenciatura en Ingeniería de Software 
-Curso: Ingeniería Web  
-Instructora: Ing. Irina Fong  
-Estudiante: Juan Carrion  
-Fecha de ejecución:07/10/2025
+Universidad Tecnológica de Panamá – Facultad de Ingeniería de Sistemas Computacionales
+Curso: Ingeniería Web
+Instructor: Ing. Irina Fong
+Estudiante: Juan Carrión
+Fecha de ejecución: 07/10/2025
+
 
 
 Introducción
 
-El presente laboratorio tiene como objetivo implementar y documentar el Login utilizando el framework Laravel, aplicando los principios del patrón Modelo-Vista-Controlador.
+Este laboratorio tiene como finalidad implementar y documentar el módulo de Login utilizando el framework Laravel, aplicando el patrón Modelo-Vista-Controlador (MVC).
+La arquitectura de Laravel se organiza de la siguiente forma:
 
-En Laravel, la arquitectura MVC se distribuyo de esta manera:
+Modelos (app/Models): Manejan la lógica de negocio y la comunicación con la base de datos.
 
-Modelos (app/Models): Se encargan de manejar la lógica de negocio y la comunicación con la base de datos.
+Controladores (app/Http/Controllers): Procesan solicitudes, coordinan modelos y retornan vistas.
 
-Vistas (resources/views): Contienen la interfaz gráfica que ve el usuario (HTML, Blade).
+Vistas (resources/views): Contienen las interfaces generadas con Blade.
 
-Controladores (app/Http/Controllers) → Procesan las solicitudes HTTP, coordinan los modelos y retornan vistas o respuestas.
+Rutas (routes/web.php): Definen las URL y sus controladores asociados.
 
-Rutas (routes/web.php): Definen las URL que responden a las acciones del usuario.
+Durante su desarrollo se configuró el archivo .env, se instalaron dependencias, se generaron migraciones y se integró el paquete Laravel UI para crear el sistema de autenticación.
 
-Durante este laboratorio realize migraciones, configuraciones en el archivo .env, al igual que la instalación de dependencias y personalización del módulo de autenticación de Laravel.
 
 
 Requisitos Previos
+Tecnologías Utilizadas
 
-PHP	8.2.26
-Composer	2.8.12
+PHP 8.2.26
+
+Composer 2.8.12
+
 Laravel 5.18.0
-Entorno de Desarrollo	WampServer 
-Servidor Web	Apache o Nginx
-Base de Datos	MySQL
-Editor de Código	Visual Studio Code
-NPM	Para compilar los assets (Laravel Mix / Vite)
-Sistema Operativo	Windows
+
+NPM
+
+MySQL
+
+WampServer
+
+Visual Studio Code
+
+Sistema Operativo Windows
+
 
 
 Instalación y Configuración
-
-a) Clonar el repositorio:
+1. Clonar el repositorio
 git clone https://github.com/usuario/Login_Lab.git
 cd Login_Lab
-
-
-b) Instalar las dependencias:
+2. Instalar dependencias
 composer install
 npm install && npm run dev
-
-
-c) Crear el archivo de entorno:
+3. Crear archivo de entorno
 cp .env.example .env
-
-
-d) Configurar las credenciales de la base de datos en .env:
+4. Configurar base de datos en .env
 DB_DATABASE=login_lab
 DB_USERNAME=root
 DB_PASSWORD=
-
-
-e) Generar la clave de la aplicación:
+5. Generar la key de Laravel
 php artisan key:generate
-
-
-f) Ejecutar las migraciones:
+6. Ejecutar migraciones
 php artisan migrate
+
+
 
 Implementación del Login (Laravel UI)
 
-Para el login se empleó el paquete Laravel UI, que proporciona el scaffolding clásico de login, registro y recuperación de contraseña.
+Para el login se utilizó el paquete Laravel UI.
 
 Comandos utilizados:
-
 composer require laravel/ui
 php artisan ui bootstrap --auth
 npm install && npm run dev
 
+Laravel UI generó automáticamente:
 
-Este flujo genera automáticamente:
+Controladores de autenticación
 
-Controladores de autenticación (Auth).
+Vistas en /resources/views/auth/
 
-Vistas de login y registro (resources/views/auth).
+Estilos con Bootstrap
 
-Rutas configuradas en routes/web.php.
+Rutas de autenticación en web.php
 
-Migraciones para la tabla users.
+Migraciones necesarias para users
+
 
 
 Base de Datos
 
-El sistema se conecta a una base de datos MySQL configurada en el archivo .env.
-
-Tablas principales generadas mediante migraciones:
+El proyecto utiliza MySQL como motor de base de datos.
+A través de migraciones se generaron las siguientes tablas:
 
 users
 
@@ -101,26 +100,67 @@ password_resets
 
 failed_jobs
 
-personal_access_tokens
-
 migrations
 
-Comandos ejecutados:
+personal_access_tokens
 
+Comando ejecutado:
 php artisan migrate
 
 
+
+
+Respaldo de la Base de Datos
+
+Se incluye un respaldo dentro del repositorio:
+
+/database/backup/login_lab.sql
+
+Este archivo contiene la estructura generada por las migraciones durante este laboratorio.
+
+
 Dificultades y Soluciones
-Error al ejecutar migraciones: Para solucionarlo verifique la conexión en .env y se ejecutó php artisan migrate:fresh.
-Error en npm run dev	Se reinstalaron dependencias con npm install.
-Problemas con vistas de autenticación	Se reinstaló Laravel UI y se regeneraron vistas con php artisan ui bootstrap --auth.
-Clave de aplicación faltante	Se generó nuevamente con php artisan key:generate.
+Problema	Solución aplicada
+Error al migrar la base de datos	Se revisó la configuración del .env y se ejecutó php artisan migrate:fresh.
+Error al compilar assets con npm	Se reinstalaron las dependencias con npm install.
+Vistas de autenticación no aparecían	Se reinstaló Laravel UI con php artisan ui bootstrap --auth.
+Clave APP_KEY ausente	Se generó nuevamente usando php artisan key:generate.
 
 
-Comandos Clave Utilizados
+
+Comandos Principales Utilizados
 composer install
 composer require laravel/ui
 php artisan ui bootstrap --auth
 npm install && npm run dev
 php artisan migrate
 php artisan serve
+
+
+
+Referencias
+
+Laravel Documentation – Authentication
+https://laravel.com/docs/8.x/authentication
+
+Laravel/UI Package
+https://github.com/laravel/ui
+
+Composer Documentation
+https://getcomposer.org/doc/
+
+
+Información del Desarrollador
+
+Este laboratorio ha sido desarrollado por el estudiante de la Universidad Tecnológica de Panamá:
+
+Nombre: Juan Carrión
+Correo: juan.carrion@utp.ac.pa
+Curso: Ingeniería Web
+Instructor del Laboratorio: Ing. Irina Fong
+
+
+
+Fecha de Ejecución
+
+07/10/2025
