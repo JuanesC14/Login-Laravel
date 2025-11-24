@@ -48,7 +48,7 @@ Sistema Operativo Windows
 
 Instalación y Configuración
 1. Clonar el repositorio
-git clone https://github.com/usuario/Login_Lab.git
+git clone https://github.com/JuanesC14/Login-Laravel.git
 cd Login_Lab
 2. Instalar dependencias
 composer install
